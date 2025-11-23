@@ -29,7 +29,7 @@ export function Hero({ scrollToSection }: HeroProps) {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+            <div className="flex flex-wrap gap-4">
               <a
                 href="tel:0781324474"
                 className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#E8B4A0] via-[#D4A090] to-[#E8B4A0] text-white px-12 py-6 rounded-full hover:scale-110 transition-all duration-300 text-lg font-bold shadow-2xl hover:shadow-[#E8B4A0]/50 overflow-hidden hover-shine"
