@@ -40,9 +40,9 @@ export function ProcessSteps() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-animation">
           {processSteps.map((step, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group hover-lift">
               <div className="relative bg-gradient-to-br from-white to-[#FDFBF7] rounded-3xl p-8 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#E8B4A0]/20 hover:border-[#E8B4A0] overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#E8B4A0]/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="text-7xl font-bold bg-gradient-to-br from-[#E8B4A0] to-[#D4A090] bg-clip-text text-transparent mb-6 relative z-10 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">{step.number}</div>

@@ -57,7 +57,7 @@ export function CoverageArea() {
               </div>
             </div>
 
-            <div className="bg-[#FDFBF7] rounded-3xl p-8">
+            <div className="bg-[#FDFBF7] rounded-3xl p-8 hover-lift animate-fade-in">
               <h4 className="text-lg font-medium mb-6">Communes desservies</h4>
               <div className="grid grid-cols-2 gap-4">
                 {coverageAreas.map((area, index) => (

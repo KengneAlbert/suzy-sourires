@@ -116,7 +116,7 @@ function App() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 animate-fade-in-up">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -142,7 +142,7 @@ function App() {
               <p className="text-xl text-black/50">Aucun produit disponible dans cette catégorie</p>
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animation">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}

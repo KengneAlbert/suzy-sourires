@@ -38,10 +38,10 @@ export function BeforeAfterGallery() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 stagger-animation">
           {beforeAfterGallery.map((item, index) => (
-            <div key={index} className="group">
-              <div className="bg-[#FDFBF7] rounded-3xl overflow-hidden">
+            <div key={index} className="group hover-lift">
+              <div className="bg-[#FDFBF7] rounded-3xl overflow-hidden hover-shine">
                 <div className="grid grid-cols-2">
                   <div className="relative aspect-square overflow-hidden">
                     <img

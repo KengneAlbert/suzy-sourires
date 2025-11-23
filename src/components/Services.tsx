@@ -123,12 +123,12 @@ export function Services({ scrollToSection }: ServicesProps) {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animation">
             {services.map((service, index) => (
               <div
                 key={index}
                 onClick={() => setSelectedService(index)}
-                className="group bg-white rounded-3xl overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#E8B4A0]/30"
+                className="group bg-white rounded-3xl overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#E8B4A0]/30 hover-lift hover-shine"
               >
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <img

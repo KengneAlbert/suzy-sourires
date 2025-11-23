@@ -18,16 +18,16 @@ export function Navigation({ scrollToSection }: NavigationProps) {
           </button>
 
           <div className="hidden lg:flex items-center gap-16">
-            <button onClick={() => scrollToSection('services')} className="text-sm hover:opacity-60 transition-opacity">
+            <button onClick={() => scrollToSection('services')} className="text-sm hover:opacity-60 transition-all hover:scale-110">
               Services
             </button>
-            <button onClick={() => scrollToSection('produits')} className="text-sm hover:opacity-60 transition-opacity">
+            <button onClick={() => scrollToSection('produits')} className="text-sm hover:opacity-60 transition-all hover:scale-110">
               Produits
             </button>
-            <button onClick={() => scrollToSection('apropos')} className="text-sm hover:opacity-60 transition-opacity">
+            <button onClick={() => scrollToSection('apropos')} className="text-sm hover:opacity-60 transition-all hover:scale-110">
               À propos
             </button>
-            <a href="tel:0781324474" className="text-sm bg-[#2D2A26] text-white px-8 py-4 rounded-full hover:scale-105 transition-transform">
+            <a href="tel:0781324474" className="text-sm bg-[#2D2A26] text-white px-8 py-4 rounded-full hover:scale-105 transition-transform hover-shine">
               Nous contacter
             </a>
           </div>

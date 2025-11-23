@@ -5,7 +5,7 @@ export function Philosophy() {
       <div className="max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5">
-            <div className="aspect-[4/5] rounded-3xl relative overflow-hidden">
+            <div className="aspect-[4/5] rounded-3xl relative overflow-hidden hover-lift animate-fade-in">
               <img
                 src={Fondatrice}
                 alt="Sourire et bienveillance"
@@ -14,7 +14,7 @@ export function Philosophy() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </div>
           </div>
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-7 space-y-8 animate-slide-in-right">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm">
               <span className="text-lg animate-bounce-slow">💭</span>
               <span>Notre philosophie</span>

@@ -57,9 +57,9 @@ export function FAQ() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4 stagger-animation">
           {faqItems.map((item, index) => (
-            <div key={index} className="bg-white rounded-2xl overflow-hidden">
+            <div key={index} className="bg-white rounded-2xl overflow-hidden hover-lift">
               <button
                 onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                 className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/5 transition-colors"

@@ -29,10 +29,10 @@ export function Hero({ scrollToSection }: HeroProps) {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
               <a
                 href="tel:0781324474"
-                className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#E8B4A0] via-[#D4A090] to-[#E8B4A0] text-white px-12 py-6 rounded-full hover:scale-110 transition-all duration-300 text-lg font-bold shadow-2xl hover:shadow-[#E8B4A0]/50 overflow-hidden"
+                className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#E8B4A0] via-[#D4A090] to-[#E8B4A0] text-white px-12 py-6 rounded-full hover:scale-110 transition-all duration-300 text-lg font-bold shadow-2xl hover:shadow-[#E8B4A0]/50 overflow-hidden hover-shine"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#D4A090] via-[#E8B4A0] to-[#D4A090] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <span className="relative z-10">07 81 32 44 74</span>
@@ -40,7 +40,7 @@ export function Hero({ scrollToSection }: HeroProps) {
               </a>
               <button
                 onClick={() => scrollToSection('services')}
-                className="inline-flex items-center gap-3 border-2 border-[#2D2A26] px-10 py-6 rounded-full hover:bg-gradient-to-r hover:from-[#2D2A26] hover:to-[#3D3A36] hover:text-white hover:scale-105 transition-all duration-300 text-lg font-medium hover:border-transparent"
+                className="inline-flex items-center gap-3 border-2 border-[#2D2A26] px-10 py-6 rounded-full hover:bg-gradient-to-r hover:from-[#2D2A26] hover:to-[#3D3A36] hover:text-white hover:scale-105 transition-all duration-300 text-lg font-medium hover:border-transparent hover-grow"
               >
                 Découvrir
               </button>

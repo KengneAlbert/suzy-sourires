@@ -19,7 +19,7 @@ export function ContactSection() {
               Disponible 7 jours sur 7 pour vous accompagner
             </p>
 
-            <div className="space-y-10">
+            <div className="space-y-10 stagger-animation">
               <a href="tel:0781324474" className="group block">
                 <div className="text-xs uppercase tracking-widest text-black/50 mb-3 flex items-center gap-2">
                   <span>Téléphone</span>
@@ -55,7 +55,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="bg-white p-12 rounded-3xl">
+          <div className="bg-white p-12 rounded-3xl hover-lift animate-fade-in">
             <h3 className="text-2xl mb-8">Envoyez-nous un message</h3>
             <form className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
@@ -97,7 +97,7 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                className="group inline-flex items-center gap-3 bg-[#2D2A26] text-white px-10 py-5 rounded-full hover:scale-105 transition-transform text-lg"
+                className="group inline-flex items-center gap-3 bg-[#2D2A26] text-white px-10 py-5 rounded-full hover:scale-105 transition-transform text-lg hover-grow hover-shine"
               >
                 <span>Envoyer</span>
                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

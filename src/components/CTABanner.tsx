@@ -16,7 +16,7 @@ export function CTABanner() {
         </p>
         <a
           href="tel:0781324474"
-          className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#E8B4A0] via-[#D4A090] to-[#E8B4A0] text-white px-12 py-6 rounded-full hover:scale-110 transition-all duration-300 text-xl font-bold shadow-2xl hover:shadow-[#E8B4A0]/50 overflow-hidden"
+          className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#E8B4A0] via-[#D4A090] to-[#E8B4A0] text-white px-12 py-6 rounded-full hover:scale-110 transition-all duration-300 text-xl font-bold shadow-2xl hover:shadow-[#E8B4A0]/50 overflow-hidden hover-shine animate-glow"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <Phone className="w-6 h-6 relative z-10 group-hover:rotate-12 group-hover:animate-shake transition-transform" />

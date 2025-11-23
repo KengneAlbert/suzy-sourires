@@ -10,7 +10,7 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <div
       onClick={onClick}
-      className="group relative bg-white rounded-3xl overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#E8B4A0]/30"
+      className="group relative bg-white rounded-3xl overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#E8B4A0]/30 hover-lift hover-shine animate-fade-in-up"
     >
       <div className="aspect-square overflow-hidden relative">
         <img
@@ -20,7 +20,7 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         {product.featured && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#E8B4A0] to-[#D4A090] text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#E8B4A0] to-[#D4A090] text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg animate-subtle-pulse">
             ✨ Coup de coeur
           </div>
         )}
