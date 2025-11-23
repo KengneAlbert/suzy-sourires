@@ -1,3 +1,4 @@
+import Fondatrice from "../assets/fondatrice.jpg";
 export function Philosophy() {
   return (
     <section className="py-32 px-8 lg:px-16 bg-[#E8B4A0]/10">
@@ -6,7 +7,7 @@ export function Philosophy() {
           <div className="lg:col-span-5">
             <div className="aspect-[4/5] rounded-3xl relative overflow-hidden">
               <img
-                src="https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src={Fondatrice}
                 alt="Sourire et bienveillance"
                 className="w-full h-full object-cover"
               />
