@@ -1,60 +1,147 @@
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+"use client";
 
-interface NavigationProps {
-  scrollToSection: (id: string) => void;
-}
+import { useState, useCallback, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
+import { PHONE_HREF, SITE_NAME } from "@/lib/constants";
 
-export function Navigation({ scrollToSection }: NavigationProps) {
+export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <nav className="fixed top-0 w-full bg-[#FDFBF7]/90 backdrop-blur-xl z-50">
-      <div className="max-w-[1400px] mx-auto px-8 lg:px-16">
-        <div className="flex justify-between items-center h-28">
-          <button onClick={() => scrollToSection('accueil')} className="group text-3xl font-serif italic flex items-center gap-2">
-            <span className="group-hover:text-[#E8B4A0] transition-colors">Suzy Sourires</span>
-            <span className="text-2xl group-hover:scale-125 transition-transform">😊</span>
-          </button>
+  const scrollToSection = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
-          <div className="hidden lg:flex items-center gap-16">
-            <button onClick={() => scrollToSection('services')} className="text-sm hover:opacity-60 transition-all hover:scale-110">
+  // Fermer le menu mobile avec Escape
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
+  return (
+    <nav
+      className="fixed top-0 w-full bg-brand-cream/90 backdrop-blur-xl z-50"
+      role="navigation"
+      aria-label="Navigation principale"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20 lg:h-24">
+          <Link
+            href="/"
+            className="group flex items-center gap-3"
+          >
+            <Image
+              src="/images/logo.png"
+              alt={SITE_NAME}
+              width={40}
+              height={40}
+              className="group-hover:scale-110 transition-transform"
+            />
+            <span className="text-xl lg:text-2xl font-serif italic group-hover:text-brand-rose transition-colors">
+              {SITE_NAME}
+            </span>
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-12">
+            <button
+              onClick={() => scrollToSection("services")}
+              className="text-sm hover:opacity-60 transition-all hover:scale-110"
+            >
               Services
             </button>
-            <button onClick={() => scrollToSection('produits')} className="text-sm hover:opacity-60 transition-all hover:scale-110">
+            <button
+              onClick={() => scrollToSection("produits")}
+              className="text-sm hover:opacity-60 transition-all hover:scale-110"
+            >
               Produits
             </button>
-            <button onClick={() => scrollToSection('apropos')} className="text-sm hover:opacity-60 transition-all hover:scale-110">
+            <button
+              onClick={() => scrollToSection("apropos")}
+              className="text-sm hover:opacity-60 transition-all hover:scale-110"
+            >
               À propos
             </button>
-            <a href="tel:0781324474" className="text-sm bg-[#2D2A26] text-white px-8 py-4 rounded-full hover:scale-105 transition-transform hover-shine">
+            <a
+              href={PHONE_HREF}
+              className="text-sm bg-brand-dark text-white px-6 py-3 rounded-full hover:scale-105 transition-transform hover-shine"
+            >
               Nous contacter
             </a>
           </div>
 
-          <button className="lg:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button
+            className="lg:hidden p-2 -mr-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
 
+      {/* Mobile menu with overlay */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-[#FDFBF7] border-t border-black/5">
-          <div className="px-8 py-12 space-y-8">
-            <button onClick={() => scrollToSection('services')} className="block text-lg hover:opacity-60 transition-opacity">
-              Services
-            </button>
-            <button onClick={() => scrollToSection('produits')} className="block text-lg hover:opacity-60 transition-opacity">
-              Produits
-            </button>
-            <button onClick={() => scrollToSection('apropos')} className="block text-lg hover:opacity-60 transition-opacity">
-              À propos
-            </button>
-            <a href="tel:0781324474" className="block text-sm bg-[#2D2A26] text-white px-8 py-4 rounded-full text-center">
-              Nous contacter
-            </a>
+        <>
+          <div
+            className="fixed inset-0 top-20 bg-black/30 z-40 lg:hidden"
+            onClick={() => setIsMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="lg:hidden bg-brand-cream border-t border-black/5 relative z-50">
+            <div className="px-6 py-8 space-y-6">
+              <button
+                onClick={() => {
+                  scrollToSection("services");
+                  setIsMenuOpen(false);
+                }}
+                className="block text-lg hover:opacity-60 transition-opacity"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection("produits");
+                  setIsMenuOpen(false);
+                }}
+                className="block text-lg hover:opacity-60 transition-opacity"
+              >
+                Produits
+              </button>
+              <button
+                onClick={() => {
+                  scrollToSection("apropos");
+                  setIsMenuOpen(false);
+                }}
+                className="block text-lg hover:opacity-60 transition-opacity"
+              >
+                À propos
+              </button>
+              <a
+                href={PHONE_HREF}
+                className="block text-sm bg-brand-dark text-white px-6 py-3 rounded-full text-center"
+              >
+                Nous contacter
+              </a>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </nav>
   );

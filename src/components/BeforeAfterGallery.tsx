@@ -1,33 +1,42 @@
+import Image from "next/image";
+import SalonSale from "../../public/images/SaleSalon.png";
+import CuisineSale from "../../public/images/CuisineSale.png";
+import SalleBainSale from "../../public/images/SaleBainSale.png";
+import SalonPropre from "../../public/images/SalonPropre.png";
+import CuisinePropre from "../../public/images/CuisinePropre.png";
+import SalleBainPropre from "../../public/images/SaleBainPropre.png";
+
 const beforeAfterGallery = [
   {
-    before: "https://images.pexels.com/photos/6195299/pexels-photo-6195299.jpeg?auto=compress&cs=tinysrgb&w=600",
-    after: "https://images.pexels.com/photos/4239037/pexels-photo-4239037.jpeg?auto=compress&cs=tinysrgb&w=600",
+    before: SalonSale,
+    after: SalonPropre,
     title: "Salon",
-    description: "Nettoyage en profondeur"
+    description: "Nettoyage en profondeur",
   },
   {
-    before: "https://images.pexels.com/photos/5824471/pexels-photo-5824471.jpeg?auto=compress&cs=tinysrgb&w=600",
-    after: "https://images.pexels.com/photos/1910472/pexels-photo-1910472.jpeg?auto=compress&cs=tinysrgb&w=600",
+    before: CuisineSale,
+    after: CuisinePropre,
     title: "Cuisine",
-    description: "Dégraissage complet"
+    description: "Dégraissage complet",
   },
   {
-    before: "https://images.pexels.com/photos/6195299/pexels-photo-6195299.jpeg?auto=compress&cs=tinysrgb&w=600",
-    after: "https://images.pexels.com/photos/7061662/pexels-photo-7061662.jpeg?auto=compress&cs=tinysrgb&w=600",
+    before: SalleBainSale,
+    after: SalleBainPropre,
     title: "Salle de bain",
-    description: "Détartrage et brillance"
-  }
+    description: "Détartrage et brillance",
+  },
 ];
 
 export function BeforeAfterGallery() {
   return (
-    <section className="py-32 px-8 lg:px-16 bg-white">
-      <div className="max-w-[1400px] mx-auto">
+    <section id="gallery" className="py-24 lg:py-32 px-6 lg:px-8 bg-white">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-3 h-3 bg-[#E8B4A0] rounded-full animate-spin-slow"></div>
-            <span className="text-sm tracking-widest uppercase">Nos résultats</span>
-            <span className="text-2xl animate-bounce-slow">✨</span>
+            <div className="w-3 h-3 bg-brand-rose rounded-full animate-spin-slow" />
+            <span className="text-sm tracking-widest uppercase">
+              Nos résultats
+            </span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-light mb-6">
             Avant / Après
@@ -37,29 +46,32 @@ export function BeforeAfterGallery() {
             Découvrez la différence que nos services de nettoyage peuvent faire
           </p>
         </div>
-
         <div className="grid md:grid-cols-3 gap-8 stagger-animation">
           {beforeAfterGallery.map((item, index) => (
             <div key={index} className="group hover-lift">
-              <div className="bg-[#FDFBF7] rounded-3xl overflow-hidden hover-shine">
+              <div className="bg-brand-cream rounded-3xl overflow-hidden hover-shine">
                 <div className="grid grid-cols-2">
                   <div className="relative aspect-square overflow-hidden">
-                    <img
+                    <Image
                       src={item.before}
                       alt={`Avant - ${item.title}`}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 50vw, 200px"
+                      className="object-cover"
                     />
                     <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-medium">
                       Avant
                     </div>
                   </div>
                   <div className="relative aspect-square overflow-hidden">
-                    <img
+                    <Image
                       src={item.after}
                       alt={`Après - ${item.title}`}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 50vw, 200px"
+                      className="object-cover"
                     />
-                    <div className="absolute top-4 right-4 bg-[#E8B4A0] text-white px-3 py-1 rounded-full text-xs font-medium">
+                    <div className="absolute top-4 right-4 bg-brand-rose text-white px-3 py-1 rounded-full text-xs font-medium">
                       Après
                     </div>
                   </div>

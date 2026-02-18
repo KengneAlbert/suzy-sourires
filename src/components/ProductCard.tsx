@@ -1,53 +1,109 @@
-import { ShoppingBag } from 'lucide-react';
-import { Product } from '../types/product';
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ShoppingBag } from "lucide-react";
+import { openWhatsApp } from "@/lib/whatsapp";
+import type { Product } from "@/types/product";
 
 interface ProductCardProps {
   product: Product;
-  onClick: () => void;
 }
 
-export function ProductCard({ product, onClick }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
+  const mainImage = product.images?.[0] || product.image_url;
+  const hasDiscount =
+    product.compare_at_price && product.compare_at_price > product.price;
+  const discountPercent = hasDiscount
+    ? Math.round(
+        ((product.compare_at_price! - product.price) /
+          product.compare_at_price!) *
+          100,
+      )
+    : 0;
+
   return (
-    <div
-      onClick={onClick}
-      className="group relative bg-white rounded-3xl overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#E8B4A0]/30 hover-lift hover-shine animate-fade-in-up"
-    >
-      <div className="aspect-square overflow-hidden relative">
-        <img
-          src={product.image_url}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-125 group-hover:rotate-2 transition-all duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        {product.featured && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#E8B4A0] to-[#D4A090] text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg animate-subtle-pulse">
-            ✨ Coup de coeur
+    <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100">
+      {/* Image */}
+      <Link
+        href={`/produit/${product.id}`}
+        className="block relative aspect-square overflow-hidden"
+      >
+        {mainImage ? (
+          <Image
+            src={mainImage}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+            <ShoppingBag className="w-12 h-12 text-gray-300" />
           </div>
         )}
+
+        {/* Discount badge */}
+        {hasDiscount && (
+          <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+            -{discountPercent}%
+          </div>
+        )}
+
+        {/* Out of stock overlay */}
         {!product.in_stock && (
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center">
-            <span className="text-white text-xl font-bold">Rupture de stock</span>
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <span className="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-medium">
+              Rupture de stock
+            </span>
           </div>
         )}
-      </div>
-      <div className="p-6 bg-gradient-to-br from-white to-[#FDFBF7] group-hover:from-[#FDFBF7] group-hover:to-white transition-colors duration-300">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1">
-            <p className="inline-block text-xs uppercase tracking-widest text-white bg-black/80 px-3 py-1 rounded-full mb-3">
-              {product.category}
-            </p>
-            <h3 className="text-2xl font-bold mb-2 group-hover:text-[#E8B4A0] transition-colors">{product.name}</h3>
-            <p className="text-base text-black/70 line-clamp-2 font-medium">
-              {product.short_description}
-            </p>
-          </div>
+      </Link>
+
+      {/* Info */}
+      <div className="p-5">
+        {product.category && (
+          <span className="text-xs tracking-widest uppercase text-brand-rose font-medium">
+            {product.category}
+          </span>
+        )}
+
+        <Link href={`/produit/${product.id}`}>
+          <h3 className="text-lg font-medium text-brand-dark mt-1 mb-2 group-hover:text-brand-rose transition-colors line-clamp-2">
+            {product.name}
+          </h3>
+        </Link>
+
+        {product.description && (
+          <p className="text-sm text-gray-500 mb-3 line-clamp-2">
+            {product.description}
+          </p>
+        )}
+
+        {/* Price */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xl font-semibold text-brand-dark">
+            {product.price.toFixed(2)} €
+          </span>
+          {hasDiscount && (
+            <span className="text-sm text-gray-400 line-through">
+              {product.compare_at_price!.toFixed(2)} €
+            </span>
+          )}
         </div>
-        <div className="flex items-center justify-between mt-6 pt-4 border-t-2 border-[#E8B4A0]/20">
-          <span className="text-3xl font-bold bg-gradient-to-r from-[#E8B4A0] to-[#D4A090] bg-clip-text text-transparent">{product.price.toFixed(2)} €</span>
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E8B4A0] to-[#D4A090] flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg">
-            <ShoppingBag className="w-6 h-6 text-white" />
-          </div>
-        </div>
+
+        {/* CTA */}
+        <button
+          onClick={() =>
+            openWhatsApp(
+              `Bonjour, je suis intéressé(e) par : ${product.name} (${product.price.toFixed(2)} €)`,
+            )
+          }
+          disabled={!product.in_stock}
+          className="w-full py-3 rounded-xl text-sm font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed bg-brand-dark text-white hover:bg-brand-dark-light"
+        >
+          Commander via WhatsApp
+        </button>
       </div>
     </div>
   );
