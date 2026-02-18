@@ -42,7 +42,7 @@ const services = [
   {
     title: "Aide aux courses et repas",
     desc: "Courses & préparation",
-    image: ImageMarche,
+    image: {ImageMarche},
     fullDesc:
       "Nous vous aidons à faire vos courses et à préparer des repas équilibrés adaptés à vos goûts.",
     details: [

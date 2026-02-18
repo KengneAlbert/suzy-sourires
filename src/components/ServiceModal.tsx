@@ -5,11 +5,10 @@ import Image from "next/image";
 import { PHONE_HREF } from "@/lib/constants";
 import { useModal } from "@/hooks/useModal";
 
-import type { StaticImageData } from "next/image";
 interface Service {
   title: string;
   desc: string;
-  image: string | StaticImageData;
+  image: string;
   fullDesc: string;
   details: string[];
 }

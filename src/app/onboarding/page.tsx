@@ -160,7 +160,7 @@ export default function OnboardingPage() {
             href="/"
             className="font-serif italic text-xl flex items-center gap-2 hover:text-brand-rose transition-colors"
           >
-            <Image src="/images/logo.png" alt="Logo" width={28} height={28} />
+            <Image src="/images/Logo.png" alt="Logo" width={28} height={28} />
             {SITE_NAME}
           </Link>
           <Link
@@ -264,7 +264,7 @@ function StepWelcome() {
         <div className="absolute -inset-8 bg-brand-rose/10 rounded-full blur-3xl animate-pulse-soft" />
         <div className="relative w-28 h-28 rounded-full bg-white flex items-center justify-center shadow-2xl shadow-brand-rose/30 animate-scale-in">
           <Image
-            src="/images/logo.png"
+            src="/images/Logo.png"
             alt={SITE_NAME}
             width={80}
             height={80}

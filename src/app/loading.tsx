@@ -4,7 +4,7 @@ export default function Loading() {
     <div className="min-h-screen flex items-center justify-center bg-brand-cream">
       <div className="flex flex-col items-center gap-4">
         <img
-          src="/images/logo.png"
+          src="/images/Logo.png"
           alt="Chargement"
           width={48}
           height={48}

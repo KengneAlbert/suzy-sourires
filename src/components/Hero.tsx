@@ -8,6 +8,7 @@ import ImageRenovation from "../../public/images/renovation.jpg";
 import ImageDemenagement from "../../public/images/demenagement.jpg";
 import ImageGarde from "../../public/images/garde.jpg";
 import ImageAssistance from "../../public/images/assistance.jpg";
+import Logo from "../../public/images/Logo.png";
 
 export function Hero() {
   const scrollToSection = useCallback((id: string) => {
@@ -32,7 +33,7 @@ export function Hero() {
                 Aide à domicile
               </span>
               <Image
-                src="/images/logo.png"
+                src={Logo}
                 alt="Logo"
                 width={28}
                 height={28}

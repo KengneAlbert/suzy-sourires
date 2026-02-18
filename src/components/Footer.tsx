@@ -22,7 +22,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
               <Image
-                src="/images/logo.png"
+                src="/images/Logo.png"
                 alt={SITE_NAME}
                 width={36}
                 height={36}

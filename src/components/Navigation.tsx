@@ -43,7 +43,7 @@ export function Navigation() {
             className="group flex items-center gap-3"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/Logo.png"
               alt={SITE_NAME}
               width={40}
               height={40}
