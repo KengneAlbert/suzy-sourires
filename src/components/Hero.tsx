@@ -8,7 +8,7 @@ import ImageRenovation from "../../public/images/renovation.jpg";
 import ImageDemenagement from "../../public/images/demenagement.jpg";
 import ImageGarde from "../../public/images/garde.jpg";
 import ImageAssistance from "../../public/images/assistance.jpg";
-import Logo from "../../public/images/logo.png";
+import Logo from "../../public/images/Logo.png";
 
 export function Hero() {
   const scrollToSection = useScrollToSection();
