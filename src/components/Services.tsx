@@ -1,17 +1,23 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { ServiceModal } from "./ServiceModal";
+import type { Service } from "@/types/service";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 import ImageMarche from "../../public/images/marche.jpg";
+import ImageAssistanceAdmin from "../../public/images/assistance-admin.jpg";
+import ImageNettoyage from "../../public/images/nettoyage.jpg";
+import ImageEntretien from "../../public/images/entretien.jpg";
+import ImageDemenagementService from "../../public/images/demenagement-service.jpg";
+import ImageGardeEnfants from "../../public/images/garde-enfants.jpg";
 
-const services = [
+const services: Service[] = [
   {
     title: "Assistance administrative",
     desc: "Documents & démarches",
-    image:
-      "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: ImageAssistanceAdmin,
     fullDesc:
       "Nous vous accompagnons dans toutes vos démarches administratives pour vous simplifier la vie.",
     details: [
@@ -26,8 +32,7 @@ const services = [
   {
     title: "Services de nettoyage",
     desc: "Entretien professionnel",
-    image:
-      "https://images.pexels.com/photos/4239037/pexels-photo-4239037.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: ImageNettoyage,
     fullDesc:
       "Un intérieur propre et bien entretenu pour votre confort et votre bien-être au quotidien.",
     details: [
@@ -57,8 +62,7 @@ const services = [
   {
     title: "Entretien espaces",
     desc: "Intérieur & extérieur",
-    image:
-      "https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: ImageEntretien,
     fullDesc:
       "Maintenance et entretien de vos espaces intérieurs et extérieurs pour un cadre de vie agréable.",
     details: [
@@ -73,8 +77,7 @@ const services = [
   {
     title: "Assistance déménagements",
     desc: "Organisation & aide",
-    image:
-      "https://images.pexels.com/photos/7464230/pexels-photo-7464230.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: ImageDemenagementService,
     fullDesc:
       "Accompagnement complet pour un déménagement serein et bien organisé.",
     details: [
@@ -89,8 +92,7 @@ const services = [
   {
     title: "Garde d'enfants",
     desc: "Surveillance bienveillante",
-    image:
-      "https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: ImageGardeEnfants,
     fullDesc:
       "Garde et accompagnement de vos enfants avec attention et professionnalisme.",
     details: [
@@ -106,12 +108,7 @@ const services = [
 
 export function Services() {
   const [selectedService, setSelectedService] = useState<number | null>(null);
-
-  const scrollToSection = useCallback((id: string) => {
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
     if (selectedService !== null) {

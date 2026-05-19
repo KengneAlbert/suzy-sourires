@@ -1,21 +1,17 @@
 "use client";
 
-import { useCallback } from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { PHONE_NUMBER, PHONE_HREF } from "@/lib/constants";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 import ImageRenovation from "../../public/images/renovation.jpg";
 import ImageDemenagement from "../../public/images/demenagement.jpg";
 import ImageGarde from "../../public/images/garde.jpg";
 import ImageAssistance from "../../public/images/assistance.jpg";
-import Logo from "../../public/images/Logo.png";
+import Logo from "../../public/images/logo.png";
 
 export function Hero() {
-  const scrollToSection = useCallback((id: string) => {
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
+  const scrollToSection = useScrollToSection();
   return (
     <section
       id="accueil"

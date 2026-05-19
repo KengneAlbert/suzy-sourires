@@ -4,14 +4,7 @@ import { X, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { PHONE_HREF } from "@/lib/constants";
 import { useModal } from "@/hooks/useModal";
-
-interface Service {
-  title: string;
-  desc: string;
-  image: string;
-  fullDesc: string;
-  details: string[];
-}
+import type { Service } from "@/types/service";
 
 interface ServiceModalProps {
   service: Service;

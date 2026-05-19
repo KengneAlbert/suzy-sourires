@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AboutBg from "../../public/images/about-bg.jpg";
 
 export function AboutSection() {
   return (
@@ -8,7 +9,7 @@ export function AboutSection() {
     >
       <div className="absolute inset-0 opacity-5">
         <Image
-          src="https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=1200"
+          src={AboutBg}
           alt=""
           fill
           sizes="100vw"
