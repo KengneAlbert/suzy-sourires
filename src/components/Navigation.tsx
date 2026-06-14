@@ -54,7 +54,7 @@ export function Navigation() {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-12">
+          <div className="hidden lg:flex items-center gap-10">
             <button
               onClick={() => scrollToSection("services")}
               className="text-sm hover:opacity-60 transition-all hover:scale-110"
@@ -67,6 +67,12 @@ export function Navigation() {
             >
               Produits
             </button>
+            <Link
+              href="/catalogue"
+              className="text-sm hover:opacity-60 transition-all hover:scale-110"
+            >
+              Catalogue
+            </Link>
             <button
               onClick={() => scrollToSection("apropos")}
               className="text-sm hover:opacity-60 transition-all hover:scale-110"
@@ -124,6 +130,13 @@ export function Navigation() {
               >
                 Produits
               </button>
+              <Link
+                href="/catalogue"
+                onClick={() => setIsMenuOpen(false)}
+                className="block text-lg hover:opacity-60 transition-opacity"
+              >
+                Catalogue
+              </Link>
               <button
                 onClick={() => {
                   scrollToSection("apropos");
