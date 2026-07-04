@@ -447,7 +447,7 @@ function StepCoverage() {
         <div className="absolute -inset-4 bg-gradient-to-br from-brand-rose/20 to-transparent rounded-[2rem] blur-2xl" />
         <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
           <Image
-            src="https://images.pexels.com/photos/1134166/pexels-photo-1134166.jpeg?auto=compress&cs=tinysrgb&w=800"
+            src="/images/paris.jpg"
             alt="Zone d'intervention Seine-Saint-Denis"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
