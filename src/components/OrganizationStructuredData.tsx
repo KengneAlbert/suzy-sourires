@@ -9,13 +9,14 @@ import {
 export function OrganizationStructuredData() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
+    "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    telephone: PHONE_NUMBER,
+    telephone: "+33781324474",
     email: EMAIL,
+    image: `${SITE_URL}/images/Logo.png`,
     address: {
       "@type": "PostalAddress",
       streetAddress: "29 Rue du Dr Fleming",
@@ -29,14 +30,19 @@ export function OrganizationStructuredData() {
       latitude: 48.9382,
       longitude: 2.4966,
     },
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 48.9382,
-        longitude: 2.4966,
-      },
-      geoRadius: "15000",
+    areaServed: [
+      "Aulnay-sous-Bois",
+      "Le Blanc-Mesnil",
+      "Sevran",
+      "Villepinte",
+      "Tremblay-en-France",
+      "Drancy",
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "50",
+      bestRating: "5",
     },
     openingHoursSpecification: [
       {
@@ -59,7 +65,6 @@ export function OrganizationStructuredData() {
       },
     ],
     priceRange: "€-€€",
-    sameAs: [],
   };
 
   return (

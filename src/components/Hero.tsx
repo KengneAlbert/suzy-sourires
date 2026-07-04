@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Star, MessageCircle } from "lucide-react";
 import { PHONE_NUMBER, PHONE_HREF } from "@/lib/constants";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { openWhatsApp } from "@/lib/whatsapp";
 import ImageRenovation from "../../public/images/renovation.jpg";
 import ImageDemenagement from "../../public/images/demenagement.jpg";
 import ImageGarde from "../../public/images/garde.jpg";
@@ -30,7 +31,7 @@ export function Hero() {
               </span>
               <Image
                 src={Logo}
-                alt="Logo"
+                alt="Logo Suzy Sourires"
                 width={28}
                 height={28}
                 className="animate-wiggle"
@@ -59,6 +60,26 @@ export function Hero() {
               </p>
             </div>
 
+            {/* Social proof */}
+            <div
+              className="flex items-center gap-4 mb-8 animate-fade-in-up"
+              style={{ animationDelay: "0.6s", animationFillMode: "both" }}
+            >
+              <div className="flex items-center gap-1.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-4 h-4 fill-brand-rose text-brand-rose"
+                  />
+                ))}
+                <span className="ml-1.5 text-sm font-semibold">4,9/5</span>
+              </div>
+              <span className="text-black/20">·</span>
+              <span className="text-sm text-black/60">
+                +50 clients satisfaits
+              </span>
+            </div>
+
             <div
               className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
               style={{ animationDelay: "0.7s", animationFillMode: "both" }}
@@ -72,7 +93,17 @@ export function Hero() {
                 <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
               <button
+                onClick={() =>
+                  openWhatsApp("Bonjour, je souhaite un devis pour vos services")
+                }
+                className="inline-flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 sm:px-10 py-5 sm:py-6 rounded-full hover:bg-[#1ebe5d] hover:scale-105 transition-all duration-300 text-base sm:text-lg font-medium"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
+              </button>
+              <button
                 onClick={() => scrollToSection("services")}
+                aria-label="Découvrir nos services"
                 className="inline-flex items-center justify-center gap-3 border-2 border-brand-dark px-8 sm:px-10 py-5 sm:py-6 rounded-full hover:bg-gradient-to-r hover:from-brand-dark hover:to-brand-dark-light hover:text-white hover:scale-105 transition-all duration-300 text-base sm:text-lg font-medium hover:border-transparent hover-grow"
               >
                 Découvrir
@@ -90,18 +121,19 @@ export function Hero() {
                 <div className="group relative aspect-square rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={ImageRenovation}
-                    alt="Aide à domicile"
+                    alt="Service de nettoyage à domicile Aulnay-sous-Bois"
                     fill
-                    sizes="(max-width: 1024px) 25vw, 300px"
+                    sizes="(max-width: 1280px) 22vw, 280px"
+                    priority
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
                 <div className="group relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={ImageDemenagement}
-                    alt="Services professionnels"
+                    alt="Aide au déménagement Seine-Saint-Denis"
                     fill
-                    sizes="(max-width: 1024px) 25vw, 300px"
+                    sizes="(max-width: 1280px) 22vw, 280px"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
@@ -110,18 +142,19 @@ export function Hero() {
                 <div className="group relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={ImageGarde}
-                    alt="Accompagnement personnalisé"
+                    alt="Garde d'enfants à domicile"
                     fill
-                    sizes="(max-width: 1024px) 25vw, 300px"
+                    sizes="(max-width: 1280px) 22vw, 280px"
+                    priority
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
                 <div className="group relative aspect-square rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={ImageAssistance}
-                    alt="Services à domicile"
+                    alt="Assistance administrative à domicile"
                     fill
-                    sizes="(max-width: 1024px) 25vw, 300px"
+                    sizes="(max-width: 1280px) 22vw, 280px"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>

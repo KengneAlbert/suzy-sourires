@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { AuthProvider } from "@/hooks/useAuth";
 import { OrganizationStructuredData } from "@/components/OrganizationStructuredData";
@@ -20,18 +20,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    "aide à domicile",
-    "ménage",
-    "assistance administrative",
-    "garde d'enfants",
-    "courses",
-    "entretien",
-    "Aulnay-sous-Bois",
-    "Seine-Saint-Denis",
-    "services à la personne",
-    "Île-de-France",
-  ],
+  alternates: {
+    canonical: SITE_URL,
+  },
   authors: [{ name: SITE_NAME }],
   openGraph: {
     type: "website",
@@ -40,11 +31,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} — Services d'aide à domicile en Seine-Saint-Denis`,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/images/Logo.png",
+        width: 512,
+        height: 512,
+        alt: `Logo ${SITE_NAME}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    images: ["/images/Logo.png"],
   },
   robots: {
     index: true,
@@ -54,6 +54,10 @@ export const metadata: Metadata = {
     icon: "/images/Logo.png",
     apple: "/images/Logo.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FDFBF7",
 };
 
 export default function RootLayout({

@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase-browser";
 import { ProductCard } from "@/components/ProductCard";
 import type { Product } from "@/types/product";
 
+// Module-level singleton: createClient is safe to call once per module as a browser client
 const supabase = createClient();
 
 export function ProductsSection() {
@@ -84,6 +85,7 @@ export function ProductsSection() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
+                aria-pressed={activeCategory === cat}
                 className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-brand-dark text-white shadow-lg"
@@ -92,7 +94,7 @@ export function ProductsSection() {
               >
                 {cat === "all" ? (
                   <span className="flex items-center gap-2">
-                    <Filter className="w-3.5 h-3.5" /> Tous
+                    <Filter className="w-3.5 h-3.5" aria-hidden="true" /> Tous
                   </span>
                 ) : (
                   cat

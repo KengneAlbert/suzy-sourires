@@ -4,6 +4,8 @@ const config: Config = {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/hooks/**/*.{js,ts,jsx,tsx}",
+    "./src/lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -17,6 +19,7 @@ const config: Config = {
         },
       },
       fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         serif: ["Georgia", "Cambria", "serif"],
       },
       animation: {

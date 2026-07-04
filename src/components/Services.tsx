@@ -60,7 +60,7 @@ const services: Service[] = [
     ],
   },
   {
-    title: "Entretien espaces",
+    title: "Entretien des espaces",
     desc: "Intérieur & extérieur",
     image: ImageEntretien,
     fullDesc:
@@ -141,8 +141,17 @@ export function Services() {
             {services.map((service, index) => (
               <div
                 key={index}
+                role="button"
+                tabIndex={0}
                 onClick={() => setSelectedService(index)}
-                className="group cursor-pointer relative bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover-lift hover-shine"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedService(index);
+                  }
+                }}
+                aria-label={`En savoir plus sur : ${service.title}`}
+                className="group cursor-pointer relative bg-white rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover-lift hover-shine focus:outline-none focus:ring-2 focus:ring-brand-rose/50 focus:ring-offset-2"
               >
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <Image
@@ -166,7 +175,7 @@ export function Services() {
                     <h3 className="text-2xl font-light text-white">
                       {service.title}
                     </h3>
-                    <ArrowUpRight className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowUpRight className="w-5 h-5 text-white opacity-30 group-hover:opacity-100 group-focus:opacity-100 transition-opacity" />
                   </div>
                 </div>
               </div>
