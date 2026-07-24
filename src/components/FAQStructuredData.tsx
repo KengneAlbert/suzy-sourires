@@ -1,4 +1,4 @@
-import { faqItems } from "@/components/FAQ";
+import { faqItems } from "@/data/faq";
 
 export function FAQStructuredData() {
   const jsonLd = {
