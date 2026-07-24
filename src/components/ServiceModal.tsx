@@ -1,9 +1,9 @@
 "use client";
 
-import { X, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { X, ArrowUpRight, CheckCircle2, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import { PHONE_HREF } from "@/lib/constants";
 import { useModal } from "@/hooks/useModal";
+import { openWhatsApp } from "@/lib/whatsapp";
 import type { Service } from "@/types/service";
 
 interface ServiceModalProps {
@@ -21,21 +21,28 @@ export function ServiceModal({
 }: ServiceModalProps) {
   const { modalRef, handleKeyDown } = useModal(true, onClose);
 
+  const handleOrder = () => {
+    openWhatsApp(
+      `Bonjour, je souhaite en savoir plus sur votre service : ${service.title}`,
+    );
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={service.title}
+      aria-labelledby="modal-title"
       ref={modalRef}
       onKeyDown={handleKeyDown}
     >
       <div
-        className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto overscroll-contain animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative aspect-[21/9] overflow-hidden">
+        {/* Hero image — 21/9 desktop, 4/3 mobile */}
+        <div className="relative aspect-[4/3] sm:aspect-[21/9] overflow-hidden rounded-t-3xl">
           <Image
             src={service.image}
             alt={service.title}
@@ -46,7 +53,7 @@ export function ServiceModal({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <button
             onClick={onClose}
-            aria-label="Fermer"
+            aria-label="Fermer la modale"
             className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
           >
             <X className="w-6 h-6 text-white" />
@@ -58,12 +65,16 @@ export function ServiceModal({
                 Service {String(serviceIndex + 1).padStart(2, "0")}
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-white mb-3">
+            <h2
+              id="modal-title"
+              className="text-4xl lg:text-5xl font-light text-white mb-3"
+            >
               {service.title}
             </h2>
             <p className="text-xl text-white/90">{service.fullDesc}</p>
           </div>
         </div>
+
         <div className="p-8 lg:p-12">
           <h3 className="text-2xl mb-8 flex items-center gap-3">
             <span className="font-light">Ce qui est inclus</span>
@@ -80,13 +91,13 @@ export function ServiceModal({
             ))}
           </div>
           <div className="border-t border-black/10 pt-8 flex flex-col sm:flex-row gap-4">
-            <a
-              href={PHONE_HREF}
-              className="flex-1 inline-flex items-center justify-center gap-3 bg-brand-dark text-white px-8 py-5 rounded-full hover:scale-105 transition-transform text-lg"
+            <button
+              onClick={handleOrder}
+              className="flex-1 inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 py-5 rounded-full transition-colors text-lg font-medium"
             >
-              <span>Nous contacter</span>
-              <ArrowUpRight className="w-5 h-5" />
-            </a>
+              <MessageCircle className="w-5 h-5" />
+              <span>Commander via WhatsApp</span>
+            </button>
             <button
               onClick={() => {
                 onClose();
@@ -94,7 +105,8 @@ export function ServiceModal({
               }}
               className="flex-1 inline-flex items-center justify-center gap-3 border-2 border-brand-dark px-8 py-5 rounded-full hover:bg-brand-dark hover:text-white transition-colors text-lg"
             >
-              Demander un devis
+              <span>Demander un devis</span>
+              <ArrowUpRight className="w-5 h-5" />
             </button>
           </div>
         </div>

@@ -114,10 +114,10 @@ export function Services() {
     if (selectedService !== null) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
   }, [selectedService]);
 
@@ -132,10 +132,15 @@ export function Services() {
                 Nos services
               </span>
             </div>
-            <h2 className="text-5xl lg:text-6xl font-light max-w-3xl">
+            <h2 className="text-5xl lg:text-6xl font-light max-w-3xl mb-6">
               Des prestations adaptées
               <span className="block font-serif italic">à vos besoins</span>
             </h2>
+            <p className="text-lg text-black/60 max-w-xl">
+              Ménage, garde d&apos;enfants, assistance administrative,
+              déménagement et plus — nous intervenons partout en
+              Seine-Saint-Denis.
+            </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animation">
             {services.map((service, index) => (

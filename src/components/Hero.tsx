@@ -72,7 +72,7 @@ export function Hero() {
                     className="w-4 h-4 fill-brand-rose text-brand-rose"
                   />
                 ))}
-                <span className="ml-1.5 text-sm font-semibold">4,9/5</span>
+                <span className="ml-1.5 text-sm font-semibold">4,8/5</span>
               </div>
               <span className="text-black/20">·</span>
               <span className="text-sm text-black/60">
@@ -101,13 +101,32 @@ export function Hero() {
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
               </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                aria-label="Découvrir nos services"
-                className="inline-flex items-center justify-center gap-3 border-2 border-brand-dark px-8 sm:px-10 py-5 sm:py-6 rounded-full hover:bg-gradient-to-r hover:from-brand-dark hover:to-brand-dark-light hover:text-white hover:scale-105 transition-all duration-300 text-base sm:text-lg font-medium hover:border-transparent hover-grow"
-              >
-                Découvrir
-              </button>
+            </div>
+            <button
+              onClick={() => scrollToSection("services")}
+              aria-label="Découvrir nos services"
+              className="mt-4 text-sm text-black/50 hover:text-brand-rose transition-colors underline underline-offset-4 animate-fade-in-up"
+              style={{ animationDelay: "0.85s", animationFillMode: "both" }}
+            >
+              Découvrir nos services ↓
+            </button>
+          </div>
+
+          {/* Image mobile — unique, visible uniquement sur mobile */}
+          <div
+            className="block md:hidden mt-8 animate-fade-in-up"
+            style={{ animationDelay: "0.6s", animationFillMode: "both" }}
+          >
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src={ImageRenovation}
+                alt="Services à domicile Aulnay-sous-Bois"
+                fill
+                sizes="100vw"
+                priority
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent" />
             </div>
           </div>
 

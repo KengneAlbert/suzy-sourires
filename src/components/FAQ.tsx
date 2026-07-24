@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Phone } from "lucide-react";
-import { PHONE_HREF } from "@/lib/constants";
+import { ChevronDown, MessageCircle } from "lucide-react";
+import { openWhatsApp } from "@/lib/whatsapp";
 
-const faqItems = [
+export const faqItems = [
   {
     question: "Quels sont vos tarifs ?",
     answer:
@@ -13,12 +13,12 @@ const faqItems = [
   {
     question: "Quels sont vos horaires d'intervention ?",
     answer:
-      "Nous intervenons du lundi au samedi, de 8h à 20h. Des interventions le dimanche et en soirée peuvent être organisées sur demande pour répondre à vos besoins spécifiques.",
+      "Nous intervenons du lundi au vendredi de 8h à 20h, le samedi de 9h à 19h et le dimanche de 9h à 20h. Contactez-nous pour tout besoin hors de ces créneaux.",
   },
   {
     question: "Quelle est votre zone d'intervention ?",
     answer:
-      "Nous intervenons principalement à Aulnay-Sous-Bois et les communes environnantes (Sevran, Drancy, Le Blanc-Mesnil, Bondy, Villepinte, Tremblay-en-France). N'hésitez pas à nous contacter pour vérifier si nous desservons votre secteur.",
+      "Nous intervenons principalement à Aulnay-sous-Bois et les communes environnantes : Sevran, Drancy, Le Blanc-Mesnil, Bondy, Villepinte, Tremblay-en-France, Pierrefitte-sur-Seine, Stains, Saint-Denis, Bobigny et Pantin. Contactez-nous pour vérifier votre secteur.",
   },
   {
     question: "Quels moyens de paiement acceptez-vous ?",
@@ -50,84 +50,77 @@ const faqItems = [
 export function FAQ() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      <section id="faq" className="py-24 lg:py-32 px-6 lg:px-8 bg-brand-cream">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-3 h-3 bg-brand-rose rounded-full animate-pulse" />
-              <span className="text-sm tracking-widest uppercase">
-                Questions fréquentes
-              </span>
-              <span className="text-2xl animate-wiggle">❓</span>
-            </div>
-            <h2 className="text-5xl lg:text-6xl font-light mb-6">
-              Foire aux
-              <span className="block font-serif italic">questions</span>
-            </h2>
-            <p className="text-xl text-black/70 max-w-2xl mx-auto">
-              Trouvez rapidement les réponses à vos questions les plus courantes
-            </p>
+    <section id="faq" className="py-24 lg:py-32 px-6 lg:px-8 bg-brand-cream">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-3 h-3 bg-brand-rose rounded-full animate-pulse" />
+            <span className="text-sm tracking-widest uppercase">
+              Questions fréquentes
+            </span>
           </div>
-          <div className="max-w-4xl mx-auto space-y-4 stagger-animation">
-            {faqItems.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden hover-lift"
-              >
-                <button
-                  onClick={() =>
-                    setOpenFaqIndex(openFaqIndex === index ? null : index)
-                  }
-                  aria-expanded={openFaqIndex === index}
-                  className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/5 transition-colors"
-                >
-                  <span className="text-xl font-medium pr-8">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-6 h-6 text-brand-rose flex-shrink-0 transition-transform ${openFaqIndex === index ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {openFaqIndex === index && (
-                  <div className="px-8 pb-6 pt-2">
-                    <p className="text-lg text-black/70 leading-relaxed">
-                      {item.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-16">
-            <p className="text-lg text-black/70 mb-6">
-              Vous ne trouvez pas la réponse à votre question ?
-            </p>
-            <a
-              href={PHONE_HREF}
-              className="inline-flex items-center gap-3 bg-brand-dark text-white px-10 py-5 rounded-full hover:scale-105 transition-transform text-lg"
-            >
-              <Phone className="w-5 h-5" />
-              <span>Contactez-nous</span>
-            </a>
-          </div>
+          <h2 className="text-5xl lg:text-6xl font-light mb-6">
+            Foire aux
+            <span className="block font-serif italic">questions</span>
+          </h2>
+          <p className="text-xl text-black/70 max-w-2xl mx-auto">
+            Trouvez rapidement les réponses à vos questions les plus courantes
+          </p>
         </div>
-      </section>
-    </>
+
+        <div className="max-w-4xl mx-auto space-y-3">
+          {faqItems.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl overflow-hidden shadow-sm"
+            >
+              <button
+                onClick={() =>
+                  setOpenFaqIndex(openFaqIndex === index ? null : index)
+                }
+                aria-expanded={openFaqIndex === index}
+                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-black/[0.02] transition-colors"
+              >
+                <span className="text-lg font-medium pr-8">
+                  {item.question}
+                </span>
+                <ChevronDown
+                  className={`w-5 h-5 text-brand-rose flex-shrink-0 transition-transform duration-300 ${
+                    openFaqIndex === index ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  openFaqIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="px-8 pb-7 pt-1">
+                  <p className="text-base text-black/70 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-14">
+          <p className="text-lg text-black/60 mb-6">
+            Vous ne trouvez pas la réponse à votre question ?
+          </p>
+          <button
+            onClick={() =>
+              openWhatsApp("Bonjour, j'ai une question sur vos services")
+            }
+            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-10 py-5 rounded-full transition-colors text-lg font-medium"
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span>Poser une question via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

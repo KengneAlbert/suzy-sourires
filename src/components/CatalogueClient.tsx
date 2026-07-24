@@ -100,7 +100,7 @@ function ChoganCard({ product }: { product: ChoganProduct }) {
     const msg = [
       "Bonjour, je souhaite commander un parfum Chogan :",
       `• Code : ${product.code}`,
-      `• Parfum : ${product.name}${product.brand ? ` (inspiré de ${product.name} — ${product.brand})` : ""}`,
+      `• Parfum : ${product.name}${product.brand ? ` (inspiré de ${product.brand})` : ""}`,
       "• Format souhaité : ?",
       "",
       "Merci !",
@@ -552,7 +552,7 @@ export function CatalogueClient() {
 
       {/* Tab bar */}
       <div className="sticky top-20 lg:top-24 z-30 bg-brand-cream/95 backdrop-blur-md -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-3 pb-0 border-b border-black/10">
-        <div className="flex gap-1 max-w-xs">
+        <div className="flex gap-1 w-full max-w-sm mx-auto sm:mx-0">
           <button
             onClick={() => setTab("chogan")}
             className={`flex-1 py-3 text-sm font-semibold transition-all border-b-2 ${

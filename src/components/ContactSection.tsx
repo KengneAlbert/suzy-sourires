@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, MessageCircle, Check, Loader2 } from "lucide-react";
+import { ArrowUpRight, MessageCircle, Check, Loader2, AlertCircle } from "lucide-react";
 import { openWhatsApp, getWhatsAppNumber } from "@/lib/whatsapp";
-import { PHONE_HREF, PHONE_NUMBER, EMAIL, ADDRESS } from "@/lib/constants";
+import { PHONE_HREF, PHONE_NUMBER, EMAIL, ADDRESS, GOOGLE_MAPS_URL } from "@/lib/constants";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -15,10 +15,19 @@ export function ContactSection() {
   const [formStatus, setFormStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
+  const [errors, setErrors] = useState<{ name?: string; message?: string }>({});
+
+  const validate = () => {
+    const e: { name?: string; message?: string } = {};
+    if (!formData.name.trim()) e.name = "Le nom est requis.";
+    if (!formData.message.trim()) e.message = "Le message est requis.";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.message.trim()) return;
+    if (!validate()) return;
 
     setFormStatus("sending");
 
@@ -93,14 +102,19 @@ export function ContactSection() {
                   {EMAIL}
                 </div>
               </a>
-              <div>
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
                 <div className="text-xs uppercase tracking-widest text-black/50 mb-3">
                   Adresse
                 </div>
-                <div className="text-lg lg:text-xl whitespace-pre-line">
+                <div className="text-lg lg:text-xl whitespace-pre-line group-hover:text-brand-rose transition-colors">
                   {ADDRESS}
                 </div>
-              </div>
+              </a>
               <div>
                 <div className="text-xs uppercase tracking-widest text-black/50 mb-3">
                   Horaires
@@ -142,14 +156,21 @@ export function ContactSection() {
                     <input
                       id="contact-name"
                       type="text"
+                      name="name"
+                      autoComplete="name"
                       value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      className="w-full px-0 py-3 border-b-2 border-black/10 focus:border-brand-rose outline-none transition-colors bg-transparent text-lg"
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (errors.name) setErrors({ ...errors, name: undefined });
+                      }}
+                      className={`w-full px-0 py-3 border-b-2 outline-none transition-colors bg-transparent text-lg ${errors.name ? "border-red-400" : "border-black/10 focus:border-brand-rose"}`}
                       placeholder="Votre nom"
-                      required
                     />
+                    {errors.name && (
+                      <p className="flex items-center gap-1 text-xs text-red-500 mt-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label
@@ -161,6 +182,8 @@ export function ContactSection() {
                     <input
                       id="contact-email"
                       type="email"
+                      name="email"
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -180,6 +203,8 @@ export function ContactSection() {
                   <input
                     id="contact-phone"
                     type="tel"
+                    name="phone"
+                    autoComplete="tel"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -199,13 +224,18 @@ export function ContactSection() {
                     id="contact-message"
                     rows={4}
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="w-full px-0 py-3 border-b-2 border-black/10 focus:border-brand-rose outline-none transition-colors resize-none bg-transparent text-lg"
+                    onChange={(e) => {
+                      setFormData({ ...formData, message: e.target.value });
+                      if (errors.message) setErrors({ ...errors, message: undefined });
+                    }}
+                    className={`w-full px-0 py-3 border-b-2 outline-none transition-colors resize-none bg-transparent text-lg ${errors.message ? "border-red-400" : "border-black/10 focus:border-brand-rose"}`}
                     placeholder="Parlez-nous de vos besoins..."
-                    required
                   />
+                  {errors.message && (
+                    <p className="flex items-center gap-1 text-xs text-red-500 mt-1">
+                      <AlertCircle className="w-3 h-3" /> {errors.message}
+                    </p>
+                  )}
                 </div>
                 <button
                   type="submit"

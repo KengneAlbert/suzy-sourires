@@ -7,7 +7,7 @@ import { PHONE_HREF } from "@/lib/constants";
 const stats = [
   { value: "+50", label: "Clients satisfaits" },
   { value: "2+", label: "Ans d'expérience" },
-  { value: "5", label: "Services proposés" },
+  { value: "6", label: "Services proposés" },
   { value: "98%", label: "Taux de satisfaction" },
 ];
 

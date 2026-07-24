@@ -69,7 +69,7 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
 
         <Link href={`/produit/${product.id}`}>
-          <h3 className="text-lg font-medium text-brand-dark mt-1 mb-2 group-hover:text-brand-rose transition-colors line-clamp-2">
+          <h3 className="text-lg font-medium text-brand-dark mt-1 mb-2 group-hover:text-brand-rose transition-colors line-clamp-2 min-h-[3.5rem]">
             {product.name}
           </h3>
         </Link>
@@ -83,11 +83,11 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Price */}
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xl font-semibold text-brand-dark">
-            {product.price.toFixed(2)} €
+            {product.price.toFixed(2).replace(".", ",")} €
           </span>
           {hasDiscount && (
             <span className="text-sm text-gray-400 line-through">
-              {product.compare_at_price!.toFixed(2)} €
+              {product.compare_at_price!.toFixed(2).replace(".", ",")} €
             </span>
           )}
         </div>

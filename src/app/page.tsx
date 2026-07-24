@@ -14,17 +14,15 @@ import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { RevealSection } from "@/components/RevealSection";
+import { FAQStructuredData } from "@/components/FAQStructuredData";
 
 export default function HomePage() {
   return (
     <>
+      <FAQStructuredData />
       <Navigation />
       <main>
         <Hero />
-
-        <RevealSection direction="scale">
-          <CTABanner />
-        </RevealSection>
 
         <RevealSection direction="up">
           <Services />
@@ -60,6 +58,10 @@ export default function HomePage() {
 
         <RevealSection direction="up">
           <FAQ />
+        </RevealSection>
+
+        <RevealSection direction="scale">
+          <CTABanner />
         </RevealSection>
 
         <RevealSection direction="up">
